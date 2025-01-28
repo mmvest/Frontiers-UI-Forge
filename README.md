@@ -54,23 +54,26 @@ Once started, the UiForge settings icon should appear in the top-left corner. Cl
 
 ## Modules
 
-### `ff_camera.lua`
+### `frontiers_forge\camera.lua`
 Handles camera functionality, including retrieving the camera's current coordinates (`x`, `y`, `z`).
 
-### `ff_entity.lua`
+### `frontiers_forge\entity.lua`
 Manages in-game entities and allows you to fetch data like health, coordinates, and names of entities within the game.
 
-### `ff_input.lua`
+### `frontiers_forge\input.lua`
 Provides access to controller input, including button states and analog stick movement.
 
-### `ff_player.lua`
+### `frontiers_forge\player.lua`
 Exposes player-specific data, such as name, level, stats (strength, dexterity, etc.), health, and power.
 
-### `ff_ui.lua`
+### `frontiers_forge\ui.lua`
 Enables toggling of various UI elements such as the ability bar, chat window, health bar, etc.
 
-### `ff_util.lua`
+### `frontiers_forge\util.lua`
 Includes utility functions for interacting with the game’s memory, converting strings, and calculating experience requirements.
+
+### `imgui\imgui.lua`
+This is just a "meta" file to help enable intellisense and static analysis functionality for your code editor with regards to the imgui functions definitions that are made accessible through the `uiforge_core.dll`. DO NOT `Require` THIS IN YOUR SCRIPTS. That will break your Lua environment.
 
 ## License
 
