@@ -1,0 +1,21 @@
+-- uint32_t GetIndex() const;            
+-- uint32_t GetLevel() const;            
+-- uint32_t GetRange() const;            
+-- uint32_t GetCastTime() const;           
+-- uint32_t GetPwrCost() const;          
+-- Scope GetScope() const;               
+-- uint32_t GetCooldown() const;         
+-- EquipReq GetEquipRequirements() const;
+-- std::wstring GetName() const;         
+-- std::wstring GetDescription() const;
+
+-- enum Scope
+-- {
+--     SELF = 0,
+--     TARGET,
+--     GROUP,
+--     PET,
+--     CORPSE,
+--     UNKOWN,
+--     ERROR_SCOPE
+-- };

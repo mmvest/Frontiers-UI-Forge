@@ -1,0 +1,13 @@
+# Build artifacts (common extensions for compiled C++ files)
+*.obj
+*.o
+*.exp
+*.pdb
+*.ilk
+*.idb
+
+# Visual Studio Code settings
+.vscode/
+
+# Logs
+forge_log*
