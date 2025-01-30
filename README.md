@@ -35,7 +35,13 @@ Use this code at your own risk. UiForge injects code into the PCSX2 emulator and
 1. Place your UI Lua scripts (dubbed ForgeScripts by the UiForge Project) in the `scripts` directory.
 1. Run `pcsx2-qt.exe`, start EQOA, and then execute `StartFrontiersForge.bat`.
 
-Once started, the UiForge settings icon should appear in the top-left corner. Click on it to see the UiForge menu.
+Once started, the UiForge settings icon should appear in the top-left corner. Click on it to see the UiForge menu. Click the settings icon again to close the UiForge menu.
+
+To detach UiForge from the process and clean it up, press the "END" key.
+
+To enable a script, click the checkbox next to it. Scripts that create Lua Errors are disabled automatically.
+
+To see script settings or debug stats, click on the script name. If it has any settings, the settings will appear in the settings tab. Debug stats can be viewed by clicking the debug tab.
 
 ## Roadmap
 
