@@ -263,37 +263,28 @@ local function DisplayToolbeltFunctions()
 end
 
 local function DisplayAbilityBarFunctions()
---     if ImGui.CollapsingHeader("AbilityBar Functions") then
---         local ability_bars = {
---             ability_bar_00 = AbilityBar.new(0),
---             ability_bar_01 = AbilityBar.new(1),
---         }
+    if ImGui.CollapsingHeader("AbilityBar Functions") then
+        for bar_index = 0, 1 do
+            ImGui.Text("Ability Bar " .. bar_index .. ":")
 
+            for slot_index = 0, AbilityBar.num_abilities - 1 do
+                local ability_slot = AbilityBar.GetAbilitySlot(bar_index, slot_index)
+                ImGui.Text("    AbilityBar.GetAbilitySlot(" .. slot_index .. "): ")
+                ImGui.Text("        AbilitySlot:GetIconRef(): " .. tostring(ability_slot:GetIconRef()))
+                ImGui.Text("        AbilitySlot:GetAbilityIndex(): " .. tostring(ability_slot:GetAbilityIndex()))
 
---         for name, ability_bar in pairs(ability_bars) do
---             ImGui.Text("Ability Bar " .. ability_bar.index .. ": ") 
---             ImGui.Text("    AbilityBar:GetIndex(): " .. ability_bar:GetIndex())  -- Print ability bar index
-
---             for slot_index = 0, AbilityBar.num_abilities - 1 do
---                 local ability_slot = ability_bar:GetAbilitySlot(slot_index)
---                 ImGui.Text("    AbilityBar:GetAbilitySlot(" .. slot_index .. "): ")
---                 ImGui.Text("        AbilitySlot:GetIconRef(): " .. tostring(ability_slot:GetIconRef()))
---                 ImGui.Text("        AbilitySlot:GetAbilityIndex(): " .. tostring(ability_slot:GetAbilityIndex()))
-
---                 local ability = ability_slot:GetAbility()
---                 if ability then
---                     ImGui.Text("        AbilitySlot:GetAbility(): ")
---                     ImGui.Text("            Ability:GetName(): " .. ability:GetName())
---                 else
---                     ImGui.Text("            No Ability Found")
---                 end
---             end
---         end
-
-
-
---     end
+                local ability = ability_slot:GetAbility()
+                if ability then
+                    ImGui.Text("        AbilitySlot:GetAbility(): ")
+                    ImGui.Text("            Ability:GetName(): " .. ability:GetName())
+                else
+                    ImGui.Text("            No Ability Found")
+                end
+            end
+        end
+    end
 end
+
 
 -- Begin a new ImGui window
 if ImGui.Begin("Frontiers Forge Test Window") then
@@ -314,7 +305,7 @@ if ImGui.Begin("Frontiers Forge Test Window") then
 
     DisplayAbilityListFunctions()
 
-    -- DisplayAbilityBarFunctions()
+    DisplayAbilityBarFunctions()
 end
 -- End the window
 ImGui.End()

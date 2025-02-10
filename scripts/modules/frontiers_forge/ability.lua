@@ -10,13 +10,13 @@ ffi.cdef[[
         uint8_t unknown_01[0x10];       // byte  28 -  43
         uint32_t level;                 // byte  44 -  47
         float range;                    // byte  48 -  51
-        float castTime;                 // byte  52 -  55
-        uint32_t pwrCost;               // byte  56 -  59
+        uint32_t cast_time;             // byte  52 -  55
+        uint32_t pwr_cost;              // byte  56 -  59
         uint32_t icon_bkgrnd_ref;       // byte  60 -  63
         uint32_t icon_foregrnd_ref;     // byte  64 -  67
         uint32_t scope;                 // byte  68 -  71
         uint32_t cooldown;              // byte  72 -  75
-        uint32_t equipReq;              // byte  76 -  79
+        uint32_t equip_req;             // byte  76 -  79
         wchar_t name[0x02];             // byte  80 -  83   Don't know the actual length of the name
         uint8_t unknown_02[0x7C];       // byte  84 - 207
         wchar_t description[0x02];      // byte 208 - 211   Don't know the actual length of the description
@@ -64,11 +64,11 @@ function Ability:GetRange()
 end
 
 function Ability:GetCastTime()
-    return self.ptr.castTime
+    return self.ptr.cast_time
 end
 
 function Ability:GetPwrCost()
-    return self.ptr.pwrCost
+    return self.ptr.pwr_cost
 end
 
 function Ability:GetScope()
@@ -80,7 +80,7 @@ function Ability:GetCooldown()
 end
 
 function Ability:GetEquipRequirements()
-    return self.ptr.equipReq
+    return self.ptr.equip_req
 end
 
 function Ability:GetName()
