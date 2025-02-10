@@ -14,4 +14,13 @@ function Camera.GetCoordinates()
     return { x = x, y = y, z = z }
 end
 
+function Camera.GetFacingRadians()
+    return Util.ReadFromOffset(0x1FB66AC, "float")
+end
+
+function Camera.GetFacingDegrees()
+    return Util.RadiansToDegrees(Util.GetCompassRadians())
+end
+
+
 return Camera

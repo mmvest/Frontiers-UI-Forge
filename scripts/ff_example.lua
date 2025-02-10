@@ -5,13 +5,13 @@ local EntityList = require("frontiers_forge.entity_list") -- Access Entity List 
 local Input = require("frontiers_forge.input")       -- Access input variables
 local Camera = require("frontiers_forge.camera")     -- Access camera variables
 local Chat = require("frontiers_forge.chat")                -- Access chat messages
+local AbilityList = require("frontiers_forge.ability_list") -- Access abilities list
+local AbilityBar = require("frontiers_forge.ability_bar")   -- Access ability bar
 
 local function DisplayUtilFunctions()
     if ImGui.CollapsingHeader("Util Functions") then
         ImGui.Text(string.format("EEmem: 0x%08X", Util.EEmem()))
         ImGui.Text("GetExpRequiredForLevel:" .. tostring(Util.GetExpRequiredForLevel(Player.GetLevel())))
-        ImGui.Text(string.format("GetCompassRadians: %.04f (North = 0, West = pi/2, South = pi, East = -pi/2)", Util.GetCompassRadians()))
-        ImGui.Text(string.format("GetCompassDegrees: %.04f", tostring(Util.GetCompassDegrees())))
         ImGui.Text("IsInGame: " .. tostring(Util.IsInGame()))
         ImGui.Text("IsStartMenuOpen: " .. tostring(Util.IsStartMenuOpen()))
     end
@@ -225,12 +225,15 @@ local function DisplayCameraFunctions()
     if ImGui.CollapsingHeader("Camera Functions") then
         local camera = Camera.GetCoordinates()
         ImGui.Text(string.format("GetCoordinates: x: %.2f y: %.2f z: %.2f", camera.x, camera.y, camera.z))
+        ImGui.Text(string.format("GetFacingRadians: %.04f (North = 0, West = pi/2, South = pi, East = -pi/2)", Camera.GetFacingRadians()))
+        ImGui.Text(string.format("GetFacingDegrees: %.04f", tostring(Camera.GetFacingDegrees())))
         ImGui.Text("[+] I hope to add more -- specifically unlocking/changing the cameras anchor point (Maybe get vertical camera movement??) ")
     end
 end
 
 local function DisplayChatFunctions()
     if ImGui.CollapsingHeader("Chat Functions") then
+        -- TODO: Malfunctioning -- fix these
         local msg_contents, msg_type = Chat.GetNextMessage()
         ImGui.Text("Message Contents: " .. msg_contents)
         ImGui.Text("Message Size (Characters): " .. #msg_contents)
@@ -238,10 +241,58 @@ local function DisplayChatFunctions()
     end
 end
 
+local function DisplayAbilityListFunctions()
+    if ImGui.CollapsingHeader("AbilityList and Ability Functions") then
+        local index = 0 -- perhaps add functionality to be able to change which ability you get
+        local selected_ability = AbilityList.GetAbilityByIndex(index)
+        ImGui.Text("AbilityList.GetAbilityByIndex(" .. index .. "): ")
+        ImGui.Text("    Ability Name: " .. selected_ability:GetName())
+        ImGui.Text("    Description: " .. selected_ability:GetDescription())
+        ImGui.Text("    Ability Index: " .. selected_ability:GetIndex())
+        ImGui.Text("    Ability Level: " .. selected_ability:GetLevel())
+        ImGui.Text("    Ability Range: " .. selected_ability:GetRange())
+        ImGui.Text("    Cast Time: " .. selected_ability:GetCastTime())
+        ImGui.Text("    Power Cost: " .. selected_ability:GetPwrCost())
+        ImGui.Text("    Scope: " .. selected_ability:GetScope())
+        ImGui.Text("    Cooldown: " .. selected_ability:GetCooldown())
+        ImGui.Text("    Equip Requirements: " .. tostring(selected_ability:GetEquipRequirements()))
+    end
+end
+
 local function DisplayToolbeltFunctions()
 end
 
 local function DisplayAbilityBarFunctions()
+--     if ImGui.CollapsingHeader("AbilityBar Functions") then
+--         local ability_bars = {
+--             ability_bar_00 = AbilityBar.new(0),
+--             ability_bar_01 = AbilityBar.new(1),
+--         }
+
+
+--         for name, ability_bar in pairs(ability_bars) do
+--             ImGui.Text("Ability Bar " .. ability_bar.index .. ": ") 
+--             ImGui.Text("    AbilityBar:GetIndex(): " .. ability_bar:GetIndex())  -- Print ability bar index
+
+--             for slot_index = 0, AbilityBar.num_abilities - 1 do
+--                 local ability_slot = ability_bar:GetAbilitySlot(slot_index)
+--                 ImGui.Text("    AbilityBar:GetAbilitySlot(" .. slot_index .. "): ")
+--                 ImGui.Text("        AbilitySlot:GetIconRef(): " .. tostring(ability_slot:GetIconRef()))
+--                 ImGui.Text("        AbilitySlot:GetAbilityIndex(): " .. tostring(ability_slot:GetAbilityIndex()))
+
+--                 local ability = ability_slot:GetAbility()
+--                 if ability then
+--                     ImGui.Text("        AbilitySlot:GetAbility(): ")
+--                     ImGui.Text("            Ability:GetName(): " .. ability:GetName())
+--                 else
+--                     ImGui.Text("            No Ability Found")
+--                 end
+--             end
+--         end
+
+
+
+--     end
 end
 
 -- Begin a new ImGui window
@@ -260,6 +311,10 @@ if ImGui.Begin("Frontiers Forge Test Window") then
     DisplayCameraFunctions()
 
     DisplayChatFunctions()
+
+    DisplayAbilityListFunctions()
+
+    -- DisplayAbilityBarFunctions()
 end
 -- End the window
 ImGui.End()

@@ -92,21 +92,13 @@ function Util.GetExpRequiredForLevel(level)
     return exp_for_levels[level]
 end
 
-function Util.GetCompassRadians()
-    return Util.ReadFromOffset(0x1FB66AC, "float")
+function Util.IsBitZero(value, mask)
+    
+    return bit.band(value, mask) == 0
 end
 
 function Util.RadiansToDegrees(radians)
     return radians * (180 / math.pi)
-end
-
-function Util.GetCompassDegrees()
-    return Util.RadiansToDegrees(Util.GetCompassRadians())
-end
-
-function Util.IsBitZero(value, mask)
-    
-    return bit.band(value, mask) == 0
 end
 
 function Util.IsInGame()
